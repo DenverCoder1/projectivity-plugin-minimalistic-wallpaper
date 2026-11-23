@@ -12,7 +12,7 @@ kotlin {
 }
 
 android {
-    namespace = libs.versions.appId.get()
+    namespace = "tv.projectivy.plugin.wallpaperprovider.sample"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     compileOptions {
