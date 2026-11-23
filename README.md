@@ -9,7 +9,7 @@ It returns one random image URL per request and does not download or store a col
 - The plugin itself has no interval setting: Projectivy controls the timer and reads the cache lifetime from the plugin manifest.
 
 # Development
-- `/sample` contains the plugin service and settings activity.
+- `/minimalistic` contains the plugin service and settings activity.
 - `/api` contains the AIDL communication API and should not be changed.
 - Build with `bash ./gradlew assembleDebug`.
 
@@ -51,4 +51,4 @@ Each of these events will lead to a call to getWallpapers() depending on your up
 - Respect authors : the wallpaper class allows you to define an author and source uri, fill them to give credit when possible
 
 # Note
-This sample is provided as is. It is by no means perfect and should serve as a quick start.
+This minimalistic is provided as is. It is by no means perfect and should serve as a quick start.

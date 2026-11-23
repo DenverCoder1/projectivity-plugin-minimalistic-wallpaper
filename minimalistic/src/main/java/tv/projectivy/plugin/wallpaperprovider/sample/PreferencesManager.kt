@@ -1,4 +1,4 @@
-package tv.projectivy.plugin.wallpaperprovider.sample
+package tv.projectivy.plugin.wallpaperprovider.minimalistic
 
 import android.content.Context
 import android.content.SharedPreferences

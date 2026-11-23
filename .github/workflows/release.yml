@@ -57,7 +57,7 @@ jobs:
           fi
 
       - name: Build release APK
-        run: bash ./gradlew :sample:assembleRelease
+        run: bash ./gradlew :minimalistic:assembleRelease
 
       - name: Sign release APK
         env:
@@ -75,7 +75,7 @@ jobs:
             --ks-pass env:KEYSTORE_PASSWORD \
             --key-pass env:KEY_PASSWORD \
             --out "$RUNNER_TEMP/minimalistic-wallpaper.apk" \
-            sample/build/outputs/apk/release/sample-release-unsigned.apk
+            minimalistic/build/outputs/apk/release/minimalistic-release-unsigned.apk
           "$APKSIGNER" verify "$RUNNER_TEMP/minimalistic-wallpaper.apk"
 
       - name: Create GitHub release
