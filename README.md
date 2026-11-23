@@ -1,8 +1,8 @@
 # Minimalistic Wallpaper for Projectivy
 
-A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://minimalistic-wallpaper.demolab.com/) API to fetch random wallpapers.
+A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection) API to fetch random wallpapers.
 
-<img width="776" height="293" alt="image" src="https://github.com/user-attachments/assets/42a808b9-f871-4180-85fd-62f11539efa9" />
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/488d83da-c28c-446d-9c05-be3a3025b998" />
 
 # Installation & Usage
 
