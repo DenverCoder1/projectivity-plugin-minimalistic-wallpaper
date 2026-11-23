@@ -2,9 +2,12 @@
 
 A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://minimalistic-wallpaper.demolab.com/).
 It resolves one random image URL per request and uses its filename as the wallpaper title. It does not download or store a collection of images.
+
+<img width="776" height="293" alt="image" src="https://github.com/user-attachments/assets/42a808b9-f871-4180-85fd-62f11539efa9" />
  
-# Usage
-- Build and install the app, then select **Minimalistic Wallpaper** as the wallpaper provider in Projectivy Launcher.
+# Installation & Usage
+- The plugin can be installed from the [Releases](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases) page. Click on the `minimalistic-wallpaper.apk` asset in the latest release to download, then install the app.
+- Select **Minimalistic Wallpaper** as the wallpaper provider in Projectivy Launcher.
 - Set the wallpaper change interval in Projectivy's wallpaper settings. The plugin's cache lifetime is 15 minutes; Projectivy requests a new image on the first wallpaper refresh after that lifetime expires. Shorter launcher intervals may therefore show the same image until the cache expires.
 - The plugin itself has no interval setting: Projectivy controls the timer and reads the cache lifetime from the plugin manifest.
 
