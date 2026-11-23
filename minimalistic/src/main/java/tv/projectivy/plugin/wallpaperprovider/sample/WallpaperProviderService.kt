@@ -40,9 +40,10 @@ class WallpaperProviderService : Service() {
                 Wallpaper(
                     uri = wallpaper.first,
                     type = WallpaperType.IMAGE,
-                    source = "https://minimalistic-wallpaper.demolab.com/",
+                    source = wallpaper.first,
                     title = wallpaper.second,
-                    author = "Minimalistic Wallpaper"
+                    author = "minimalistic-wallpaper.demolab.com",
+                    actionUri = wallpaper.first
                 )
             )
         }
