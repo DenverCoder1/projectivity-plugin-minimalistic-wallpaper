@@ -1,7 +1,7 @@
 # Minimalistic Wallpaper for Projectivy
 
 A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://minimalistic-wallpaper.demolab.com/).
-It returns one random image URL per request and does not download or store a collection of images.
+It resolves one random image URL per request and uses its filename as the wallpaper title. It does not download or store a collection of images.
  
 # Usage
 - Build and install the app, then select **Minimalistic Wallpaper** as the wallpaper provider in Projectivy Launcher.

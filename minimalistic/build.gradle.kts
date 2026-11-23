@@ -52,4 +52,5 @@ dependencies {
     implementation(libs.androidx.preference.ktx)
     implementation(libs.kotlinx.serialization.json)
     implementation(project(":api"))
+    testImplementation("junit:junit:4.13.2")
 }

@@ -53,38 +53,38 @@ class WallpaperProviderService : Service() {
             PreferencesManager.import(params)
         }
     }
+}
 
-    internal fun resolveWallpaper(requestUrl: URL): Pair<String, String> {
-        val connection = requestUrl.openConnection() as HttpURLConnection
-        try {
-            connection.requestMethod = "HEAD"
-            connection.instanceFollowRedirects = false
-            connection.connectTimeout = 10_000
-            connection.readTimeout = 10_000
+internal fun resolveWallpaper(requestUrl: URL): Pair<String, String> {
+    val connection = requestUrl.openConnection() as HttpURLConnection
+    try {
+        connection.requestMethod = "HEAD"
+        connection.instanceFollowRedirects = false
+        connection.connectTimeout = 10_000
+        connection.readTimeout = 10_000
 
-            val status = connection.responseCode
-            if (status !in listOf(301, 302, 303, 307, 308)) {
-                throw IOException("Unexpected wallpaper response: HTTP $status")
-            }
-            val location = connection.getHeaderField("Location")
-                ?: throw IOException("Wallpaper redirect has no Location header")
-            val uri = try {
-                requestUrl.toURI().resolve(URI(location))
-            } catch (e: URISyntaxException) {
-                throw IOException("Invalid wallpaper redirect URL", e)
-            } catch (e: IllegalArgumentException) {
-                throw IOException("Invalid wallpaper redirect URL", e)
-            }
-            if (uri.scheme !in listOf("http", "https") || uri.host.isNullOrEmpty()) {
-                throw IOException("Invalid wallpaper redirect URL: $uri")
-            }
-            val path = uri.path
-            if (path.isNullOrEmpty() || path.endsWith('/')) {
-                throw IOException("Wallpaper redirect URL has no filename: $uri")
-            }
-            return uri.toASCIIString() to path.substringAfterLast('/')
-        } finally {
-            connection.disconnect()
+        val status = connection.responseCode
+        if (status !in listOf(301, 302, 303, 307, 308)) {
+            throw IOException("Unexpected wallpaper response: HTTP $status")
         }
+        val location = connection.getHeaderField("Location")
+            ?: throw IOException("Wallpaper redirect has no Location header")
+        val uri = try {
+            requestUrl.toURI().resolve(URI(location))
+        } catch (e: URISyntaxException) {
+            throw IOException("Invalid wallpaper redirect URL", e)
+        } catch (e: IllegalArgumentException) {
+            throw IOException("Invalid wallpaper redirect URL", e)
+        }
+        if (uri.scheme !in listOf("http", "https") || uri.host.isNullOrEmpty()) {
+            throw IOException("Invalid wallpaper redirect URL: $uri")
+        }
+        val path = uri.path
+        if (path.isNullOrEmpty() || path.endsWith('/')) {
+            throw IOException("Wallpaper redirect URL has no filename: $uri")
+        }
+        return uri.toASCIIString() to path.substringAfterLast('/')
+    } finally {
+        connection.disconnect()
     }
 }
