@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpServer
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.URL
+import java.util.Collections
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -23,6 +24,20 @@ class WallpaperProviderServiceTest {
         } finally {
             server.stop(0)
         }
+    }
+
+    @Test
+    fun providesSeveralDistinctRandomWallpapers() {
+        val requestUrls = Collections.synchronizedList(mutableListOf<String>())
+
+        val wallpapers = loadRandomWallpapers(6) { url ->
+            requestUrls.add(url.toString())
+            url.toString() to "wallpaper.jpg"
+        }
+
+        assertEquals(6, wallpapers.size)
+        assertEquals(6, requestUrls.toSet().size)
+        assertEquals(6, wallpapers.map { it.uri }.toSet().size)
     }
 
     @Test
