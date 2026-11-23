@@ -10,10 +10,14 @@ import java.net.URI
 import java.net.URISyntaxException
 import java.net.URL
 import java.util.UUID
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
 import tv.projectivy.plugin.wallpaperprovider.api.Event
 import tv.projectivy.plugin.wallpaperprovider.api.IWallpaperProviderService
 import tv.projectivy.plugin.wallpaperprovider.api.Wallpaper
 import tv.projectivy.plugin.wallpaperprovider.api.WallpaperType
+
+private const val WALLPAPERS_PER_REQUEST = 6
 
 class WallpaperProviderService : Service() {
     override fun onCreate() {
@@ -27,25 +31,7 @@ class WallpaperProviderService : Service() {
         override fun getWallpapers(event: Event?): List<Wallpaper> {
             if (event !is Event.TimeElapsed) return emptyList()
 
-            val wallpaper = try {
-                resolveWallpaper(
-                    URL("https://minimalistic-wallpaper.demolab.com/?random=${UUID.randomUUID()}&redirect=1")
-                )
-            } catch (e: IOException) {
-                Log.e("WallpaperProvider", "Failed to resolve random wallpaper", e)
-                return emptyList()
-            }
-
-            return listOf(
-                Wallpaper(
-                    uri = wallpaper.first,
-                    type = WallpaperType.IMAGE,
-                    source = wallpaper.first,
-                    title = wallpaper.second,
-                    author = "minimalistic-wallpaper.demolab.com",
-                    actionUri = wallpaper.first
-                )
-            )
+            return loadRandomWallpapers(WALLPAPERS_PER_REQUEST, ::resolveWallpaper)
         }
 
         override fun getPreferences(): String = PreferencesManager.export()
@@ -53,6 +39,43 @@ class WallpaperProviderService : Service() {
         override fun setPreferences(params: String) {
             PreferencesManager.import(params)
         }
+    }
+}
+
+internal fun loadRandomWallpapers(
+    count: Int,
+    resolver: (URL) -> Pair<String, String>
+): List<Wallpaper> {
+    require(count > 0)
+    val executor = Executors.newFixedThreadPool(count)
+    try {
+        val futures = List(count) {
+            executor.submit(Callable<Wallpaper?> {
+                try {
+                    val url = URL(
+                        "https://minimalistic-wallpaper.demolab.com/?random=${UUID.randomUUID()}&redirect=1"
+                    )
+                    val (uri, title) = resolver(url)
+                    Wallpaper(
+                        uri = uri,
+                        type = WallpaperType.IMAGE,
+                        source = uri,
+                        title = title,
+                        author = "minimalistic-wallpaper.demolab.com",
+                        actionUri = uri
+                    )
+                } catch (e: IOException) {
+                    Log.e("WallpaperProvider", "Failed to resolve random wallpaper", e)
+                    null
+                }
+            })
+        }
+        return futures.mapNotNull { it.get() }
+    } catch (e: InterruptedException) {
+        Thread.currentThread().interrupt()
+        throw IOException("Interrupted while resolving random wallpapers", e)
+    } finally {
+        executor.shutdownNow()
     }
 }
 
