@@ -13,6 +13,11 @@ It returns one random image URL per request and does not download or store a col
 - `/api` contains the AIDL communication API and should not be changed.
 - Build with `bash ./gradlew assembleDebug`.
 
+## Releases
+- Create an Android signing keystore and configure the repository secrets `ANDROID_KEYSTORE_BASE64` (the base64-encoded keystore), `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, and `ANDROID_KEY_PASSWORD`. Keep the keystore and passwords safe: future releases must use the same signing key to support in-place upgrades.
+- Update `versionCode` and `versionName` in `gradle/libs.versions.toml` before releasing. Increase `versionCode` for every upgrade.
+- Run **Build and release APK** from the Actions tab on the desired branch or tag, providing a new release tag. The workflow builds and signs the release APK and publishes it as a GitHub release.
+
 # Manifest parameters
 - apiVersion: api version used in your code. Projectivy will use it to detect if your plugin is compatible with its own code
 - uuid: unique id (format : UUID V4) used to identify your plugin. *You must generate one*
