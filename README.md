@@ -2,7 +2,7 @@
 
 A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection) API to fetch random wallpapers.
 
-<img width="800" alt="image" src="https://github.com/user-attachments/assets/488d83da-c28c-446d-9c05-be3a3025b998" />
+<img width="800" alt="screenshot" src="https://github.com/user-attachments/assets/f7c218c8-ee80-4c92-ad50-f8103bdd0f2f" />
 
 # Installation & Usage
 
