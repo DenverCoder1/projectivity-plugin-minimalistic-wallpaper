@@ -40,7 +40,15 @@ jobs:
           KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
+          if [ "$GITHUB_REF_TYPE" != "branch" ]; then
+            echo "Run the release workflow on a branch so the version commit can be pushed." >&2
+            exit 1
+          fi
           git check-ref-format "refs/tags/$RELEASE_TAG"
+          if [ -z "${RELEASE_TAG#v}" ]; then
+            echo "Release tag must contain a version name." >&2
+            exit 1
+          fi
           if git ls-remote --exit-code --tags origin "refs/tags/$RELEASE_TAG"; then
             echo "Release tag already exists: $RELEASE_TAG" >&2
             exit 1
@@ -55,6 +63,37 @@ jobs:
             echo "All four Android signing secrets must be configured." >&2
             exit 1
           fi
+
+      - name: Update and commit release version
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          path = Path("gradle/libs.versions.toml")
+          text = path.read_text()
+          code_pattern = r'(?m)^(versionCode[ \t]*=[ \t]*")([0-9]+)(".*)$'
+          name_pattern = r'(?m)^(versionName[ \t]*=[ \t]*)"(?:[^"\\]|\\.)*"([ \t]*(?:#.*)?)$'
+          codes = list(re.finditer(code_pattern, text))
+          if len(codes) != 1 or len(re.findall(name_pattern, text)) != 1:
+              raise SystemExit("Expected exactly one versionCode and versionName in the version catalog.")
+          code = int(codes[0].group(2))
+          if code >= 2100000000:
+              raise SystemExit("versionCode cannot be incremented beyond 2100000000.")
+          text = re.sub(code_pattern, lambda match: f'{match[1]}{code + 1}{match[3]}', text)
+          name = os.environ["RELEASE_TAG"].removeprefix("v")
+          text = re.sub(name_pattern, lambda match: match[1] + json.dumps(name, ensure_ascii=False) + match[2], text)
+          path.write_text(text)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gradle/libs.versions.toml
+          git commit -m "Update version for $RELEASE_TAG"
+          git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
 
       - name: Build release APK
         run: bash ./gradlew :minimalistic:assembleRelease
@@ -83,5 +122,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.tag }}
         run: |
-          gh release create --target "$GITHUB_SHA" --generate-notes -- \
+          gh release create --target "$(git rev-parse HEAD)" --generate-notes -- \
             "$RELEASE_TAG" "$RUNNER_TEMP/minimalistic-wallpaper.apk"
