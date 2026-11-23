@@ -1,14 +1,17 @@
-# Projectivy Plugin : Wallpaper Provider
+# Minimalistic Wallpaper for Projectivy
 
-This is a sample project for developing a wallpaper provider plugin for Projectivy Launcher.
-- /sample : sample code for the plugin service and its setting activity
-- /api : api used to communicate with Projectivy through AIDL (don't change it)
-- Version: 1
+A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://minimalistic-wallpaper.demolab.com/).
+It returns one random image URL per request and does not download or store a collection of images.
  
 # Usage
-- Select "use this template" (right to the fork and start buttons) to fork this as a template
-- adapt the sample manifest according to your needs (at least modify the unique id)
-- customize the Wallpaper provider service and Settings fragment
+- Build and install the app, then select **Minimalistic Wallpaper** as the wallpaper provider in Projectivy Launcher.
+- Set the wallpaper change interval in Projectivy's wallpaper settings. The plugin's cache lifetime is 15 minutes; Projectivy requests a new image on the first wallpaper refresh after that lifetime expires. Shorter launcher intervals may therefore show the same image until the cache expires.
+- The plugin itself has no interval setting: Projectivy controls the timer and reads the cache lifetime from the plugin manifest.
+
+# Development
+- `/sample` contains the plugin service and settings activity.
+- `/api` contains the AIDL communication API and should not be changed.
+- Build with `bash ./gradlew assembleDebug`.
 
 # Manifest parameters
 - apiVersion: api version used in your code. Projectivy will use it to detect if your plugin is compatible with its own code

@@ -25,8 +25,6 @@ import kotlin.collections.forEach
 import kotlin.collections.mapTo
 
 object PreferencesManager {
-    private const val IMAGE_URL_KEY = "image_url_key"
-
     lateinit var preferences: SharedPreferences
 
     fun init(context: Context) {
@@ -69,10 +67,6 @@ object PreferencesManager {
             Long::class -> preferences.getLong(key, defaultValue as? Long ?: -1) as T
             else -> throw UnsupportedOperationException("Not yet implemented")
         }
-
-    var imageUrl: String
-        get() = PreferencesManager[IMAGE_URL_KEY, "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg"]
-        set(value) { PreferencesManager[IMAGE_URL_KEY]=value }
 
     fun export(): String {
         return convertSharedPreferencesToJson(preferences)

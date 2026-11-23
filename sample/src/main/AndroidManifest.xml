@@ -54,8 +54,7 @@
                 android:name="apiVersion"
                 android:value="1"/>
 
-            <!--Plugin UUID *** YOU NEED TO CHANGE IT *** -->
-            <!--https://www.uuidgenerator.net/version4 -->
+            <!-- Plugin UUID -->
             <meta-data
                 android:name="uuid"
                 android:value="@string/plugin_uuid"/>
@@ -75,10 +74,10 @@
                 android:name="itemsCacheDurationMillis"
                 android:value="@integer/items_cache_duration_millis"/>
 
-            <!-- This sample plugin will receive time_elapsed and launcher_idle_mode_changed events -->
+            <!-- Only time_elapsed events are needed -->
             <meta-data
                 android:name="updateMode"
-                android:value="17"/>
+                android:value="@integer/update_mode_time_elapsed"/>
         </service>
 
     </application>
