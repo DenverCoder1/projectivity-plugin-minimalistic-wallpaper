@@ -2,7 +2,7 @@
 
 A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection) API to fetch random wallpapers.
 
-[![download-apk](https://custom-icon-badges.demolab.com/badge/Download%20APK-latest-green.svg?logo=download-cloud&logoSource=feather&style=for-the-badge)](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases/latest/download/minimalistic-wallpaper.apk)
+[![download-apk](https://custom-icon-badges.demolab.com/github/downloads/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/total?label=Download%20APK&logo=download-cloud&logoSource=feather&style=for-the-badge&color=green)](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases/latest/download/minimalistic-wallpaper.apk)
 [![images](https://custom-icon-badges.demolab.com/github/directory-file-count/DenverCoder1/Minimalistic-Wallpaper-Collection/images?label=Images%20in%20API&logo=image&style=for-the-badge)](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection/tree/main/images)
 
 
