@@ -30,7 +30,7 @@ class WallpaperProviderServiceTest {
     fun providesSeveralDistinctRandomWallpapers() {
         val requestUrls = Collections.synchronizedList(mutableListOf<String>())
 
-        val wallpapers = loadRandomWallpapers(6) { url ->
+        val wallpapers = loadRandomWallpapers(6, true) { url ->
             requestUrls.add(url.toString())
             url.toString() to "wallpaper.jpg"
         }
@@ -38,6 +38,20 @@ class WallpaperProviderServiceTest {
         assertEquals(6, wallpapers.size)
         assertEquals(6, requestUrls.toSet().size)
         assertEquals(6, wallpapers.map { it.uri }.toSet().size)
+    }
+
+    @Test
+    fun actionUriFollowsShowActionButtonSetting() {
+        for (showActionButton in listOf(true, false)) {
+            val wallpaper = loadRandomWallpapers(1, showActionButton) {
+                "https://example.com/image.jpg" to "image.jpg"
+            }.single()
+
+            assertEquals(
+                if (showActionButton) wallpaper.uri else null,
+                wallpaper.actionUri
+            )
+        }
     }
 
     @Test

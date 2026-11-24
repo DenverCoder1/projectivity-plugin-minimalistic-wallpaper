@@ -31,7 +31,11 @@ class WallpaperProviderService : Service() {
         override fun getWallpapers(event: Event?): List<Wallpaper> {
             if (event !is Event.TimeElapsed) return emptyList()
 
-            return loadRandomWallpapers(WALLPAPERS_PER_REQUEST, ::resolveWallpaper)
+            val showActionButton = PreferencesManager[
+                PreferencesManager.SHOW_ACTION_BUTTON,
+                PreferencesManager.DEFAULT_SHOW_ACTION_BUTTON
+            ]
+            return loadRandomWallpapers(WALLPAPERS_PER_REQUEST, showActionButton, ::resolveWallpaper)
         }
 
         override fun getPreferences(): String = PreferencesManager.export()
@@ -44,6 +48,7 @@ class WallpaperProviderService : Service() {
 
 internal fun loadRandomWallpapers(
     count: Int,
+    showActionButton: Boolean,
     resolver: (URL) -> Pair<String, String>
 ): List<Wallpaper> {
     require(count > 0)
@@ -62,7 +67,7 @@ internal fun loadRandomWallpapers(
                         source = uri,
                         title = title,
                         author = "minimalistic-wallpaper.demolab.com",
-                        actionUri = uri
+                        actionUri = if (showActionButton) uri else null
                     )
                 } catch (e: IOException) {
                     Log.e("WallpaperProvider", "Failed to resolve random wallpaper", e)

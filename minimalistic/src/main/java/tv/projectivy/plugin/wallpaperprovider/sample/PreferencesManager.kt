@@ -25,6 +25,9 @@ import kotlin.collections.forEach
 import kotlin.collections.mapTo
 
 object PreferencesManager {
+    const val SHOW_ACTION_BUTTON = "show_action_button"
+    const val DEFAULT_SHOW_ACTION_BUTTON = true
+
     lateinit var preferences: SharedPreferences
 
     fun init(context: Context) {

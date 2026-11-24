@@ -7,4 +7,5 @@
 
     <!-- Setting parameters -->
     <string name="settings">Settings</string>
+    <string name="show_action_button">Show action button in status bar</string>
 </resources>
