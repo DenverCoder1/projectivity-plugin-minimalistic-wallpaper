@@ -1,4 +1,7 @@
-# Minimalistic Wallpaper for Projectivy
+# Minimalistic Wallpaper for 
+
+[![images](https://custom-icon-badges.demolab.com/github/directory-file-count/DenverCoder1/Minimalistic-Wallpaper-Collection/images?label=images&logo=image)](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection/tree/main/images)
+[![download-apk](https://custom-icon-badges.demolab.com/badge/Download%20APK-latest-green.svg?logo=download-cloud&logoSource=feather)](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases/latest/download/minimalistic-wallpaper.apk)
 
 A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection) API to fetch random wallpapers.
 
@@ -6,7 +9,7 @@ A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Colle
 
 # Installation & Usage
 
-- The plugin can be installed with the Downloader Code **6726681** or from the [**Releases page**](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases). Click on the `minimalistic-wallpaper.apk` asset in the latest release to download, then install the app.
+- The plugin can be installed with the Downloader Code **6726681** or from the [**Releases page**](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases). Click on the [`minimalistic-wallpaper.apk`](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases/latest/download/minimalistic-wallpaper.apk) asset in the latest release to download, then install the app.
 - Select **Minimalistic Wallpaper** as the wallpaper provider in Projectivy Launcher.
 - Set the wallpaper change interval in Projectivy's wallpaper settings (e.g., 15 minutes)
 - The **Next** button cycles through the set of 6 random wallpapers returned by the provider. The plugin caches the set for one hour, after which Projectivy requests a new set on the next wallpaper refresh.
