@@ -12,6 +12,7 @@ class SettingsActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        PreferencesManager.init(this)
 
         if (!packageManager.isApplicationInstalled(PROJECTIVY_PACKAGE_ID)) {
             Toast.makeText(this, R.string.projectivy_not_installed, Toast.LENGTH_LONG).show()
@@ -30,7 +31,7 @@ class SettingsActivity : FragmentActivity() {
         val intent = Intent(WallpaperProviderContract.ACTION_WALLPAPER_PROVIDER_UPDATED).apply {
             `package` = PROJECTIVY_PACKAGE_ID
 
-            putExtra(WallpaperProviderContract.EXTRA_PROVIDER_ID, R.string.plugin_uuid)
+            putExtra(WallpaperProviderContract.EXTRA_PROVIDER_ID, getString(R.string.plugin_uuid))
             putExtra(WallpaperProviderContract.EXTRA_UPDATE_REASON, WallpaperProviderContract.UpdateReason.PREFS_CHANGED)
         }
 
