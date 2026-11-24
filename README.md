@@ -1,9 +1,10 @@
 # Minimalistic Wallpaper for Projectivity
 
-[![images](https://custom-icon-badges.demolab.com/github/directory-file-count/DenverCoder1/Minimalistic-Wallpaper-Collection/images?label=images&logo=image)](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection/tree/main/images)
-[![download-apk](https://custom-icon-badges.demolab.com/badge/Download%20APK-latest-green.svg?logo=download-cloud&logoSource=feather)](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases/latest/download/minimalistic-wallpaper.apk)
-
 A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Collection](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection) API to fetch random wallpapers.
+
+[![download-apk](https://custom-icon-badges.demolab.com/badge/Download%20APK-latest-green.svg?logo=download-cloud&logoSource=feather&style=for-the-badge)](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases/latest/download/minimalistic-wallpaper.apk)
+[![images](https://custom-icon-badges.demolab.com/github/directory-file-count/DenverCoder1/Minimalistic-Wallpaper-Collection/images?label=Images%20in%20API&logo=image&style=for-the-badge)](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection/tree/main/images)
+
 
 <img width="800" alt="screenshot" src="https://github.com/user-attachments/assets/f7c218c8-ee80-4c92-ad50-f8103bdd0f2f" />
 
