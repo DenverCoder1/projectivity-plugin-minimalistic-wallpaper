@@ -1,4 +1,4 @@
-# Minimalistic Wallpaper for 
+# Minimalistic Wallpaper for Projectivity
 
 [![images](https://custom-icon-badges.demolab.com/github/directory-file-count/DenverCoder1/Minimalistic-Wallpaper-Collection/images?label=images&logo=image)](https://github.com/DenverCoder1/Minimalistic-Wallpaper-Collection/tree/main/images)
 [![download-apk](https://custom-icon-badges.demolab.com/badge/Download%20APK-latest-green.svg?logo=download-cloud&logoSource=feather)](https://github.com/DenverCoder1/projectivity-plugin-minimalistic-wallpaper/releases/latest/download/minimalistic-wallpaper.apk)
