@@ -13,7 +13,7 @@ A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Colle
 - Select **Minimalistic Wallpaper** as the wallpaper provider in Projectivy Launcher.
 - Set the wallpaper change interval in Projectivy's wallpaper settings (e.g., 15 minutes)
 - The **Next** button cycles through the set of 6 random wallpapers returned by the provider. The plugin caches the set for one hour, after which Projectivy requests a new set on the next wallpaper refresh.
-- In the plugin settings, turn off **Show action button in status bar** to hide the wallpaper preview button. It is enabled by default. After changing the setting, wait until the next refresh (~1 hour) or disable and re-enable the plugin to apply the change immediately.
+- In the plugin settings, turn off **Show action button in status bar** to hide the wallpaper preview button. It is enabled by default. The change should go into effect immediately. If the change does not take effect immediately, try waiting until the next refresh or disable and re-enable the plugin.
 
 # Development
 
