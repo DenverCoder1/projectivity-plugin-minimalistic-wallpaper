@@ -20,6 +20,7 @@ A Projectivy Launcher wallpaper provider using the [Minimalistic Wallpaper Colle
 - `/minimalistic` contains the plugin service and settings activity.
 - `/api` contains the AIDL communication API and should not be changed.
 - Build with `bash ./gradlew assembleDebug`.
+- Test with `bash ./gradlew test` (Make sure `ANDROID_HOME` and `ANDROID_SDK_ROOT` are set correctly: `ANDROID_HOME=/opt/android-sdk ANDROID_SDK_ROOT=/opt/android-sdk bash ./gradlew test`)
 
 ## Releases
 

@@ -58,7 +58,7 @@ internal fun loadRandomWallpapers(
             executor.submit(Callable<Wallpaper?> {
                 try {
                     val url = URL(
-                        "https://minimalistic-wallpaper.demolab.com/?random=${UUID.randomUUID()}&redirect=1"
+                        "https://minimalistic-wallpaper.demolab.com/?random=${UUID.randomUUID()}"
                     )
                     val (uri, title) = resolver(url)
                     Wallpaper(
