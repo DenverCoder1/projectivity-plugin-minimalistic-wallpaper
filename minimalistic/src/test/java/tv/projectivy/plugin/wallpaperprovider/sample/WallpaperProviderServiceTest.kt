@@ -20,7 +20,7 @@ class WallpaperProviderServiceTest {
         }
         server.start()
         try {
-            test(URL("http://127.0.0.1:${server.address.port}/?random=1&redirect=1"))
+            test(URL("http://127.0.0.1:${server.address.port}/?random=1"))
         } finally {
             server.stop(0)
         }
